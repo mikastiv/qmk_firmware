@@ -103,9 +103,6 @@ static const char *depad_str(const char *depad_str, char depad_char) {
 }
 
 static void oled_render_keylog(void) {
-    if (IS_QK_MOMENTARY(last_keycode)) {
-        return;
-    }
     const char *last_row_str = get_u8_str(last_row, ' ');
     oled_write(depad_str(last_row_str, ' '), false);
     oled_write_char('x', false);
@@ -118,6 +115,12 @@ static void oled_render_keylog(void) {
         oled_write_char(' ', false);
     }
     if (last_keycode < 100) {
+        oled_write_char(' ', false);
+    }
+    if (last_keycode < 1000) {
+        oled_write_char(' ', false);
+    }
+    if (last_keycode < 10000) {
         oled_write_char(' ', false);
     }
     oled_write_P(PSTR(" : "), false);
