@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                             KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_UNDS,
   //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                                   LCTL_T(KC_ESC),LT(2,KC_TAB),KC_SPC,   RSFT_T(KC_ENT), MO(1), KC_RCTL
+                       LCTL_T(KC_ESC), LT(2,KC_TAB), LSFT_T(KC_SPC),       RSFT_T(KC_ENT), MO(1), KC_RCTL
                                       //`--------------------------'      `--------------------------'
 
   ),
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|
       KC_LSFT, XXXXXXX, XXXXXXX, KC_COLN, KC_QUES,    KC_D,                          KC_HOME, KC_PGUP, KC_PGDN,  KC_END, KC_PSCR, KC_LGUI,
   //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                                   LCTL_T(KC_ESC), _______,  KC_SPC,   RSFT_T(KC_ENT), MO(3),  KC_RCTL
+                            LCTL_T(KC_ESC), _______, LSFT_T(KC_SPC),       RSFT_T(KC_ENT), MO(3), KC_RCTL
                                       //`--------------------------'      `--------------------------'
   ),
 
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|
       KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                          XXXXXXX, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
   //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                                   LCTL_T(KC_ESC),   MO(3),  KC_SPC,   RSFT_T(KC_ENT),_______, KC_RCTL
+                              LCTL_T(KC_ESC), MO(3), LSFT_T(KC_SPC),       RSFT_T(KC_ENT), _______, KC_RCTL
                                       //`--------------------------'      `--------------------------'
   ),
 
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|
       XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD, XXXXXXX,                          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                                   LCTL_T(KC_ESC), _______,  KC_SPC,   RSFT_T(KC_ENT),_______, KC_RCTL
+                            LCTL_T(KC_ESC), _______, LSFT_T(KC_SPC),       RSFT_T(KC_ENT), _______, KC_RCTL
                                       //`--------------------------'      `--------------------------'
   )
 };
