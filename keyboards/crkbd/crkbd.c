@@ -60,6 +60,9 @@ static void oled_render_layer_state(void) {
         case 4:
             oled_write_ln_P(PSTR("Gaming"), false);
             break;
+        case 5:
+            oled_write_ln_P(PSTR("Gaming Up"), false);
+            break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
             break;
