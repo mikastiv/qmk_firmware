@@ -7,11 +7,14 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   FUNC,
-  BACKLIT
+  GAMING,
+  GLOWER,
+  GRAISE
 };
 
 enum combos {
-  GAME
+  GAME,
+  JK_ESC
 };
 
 
@@ -25,12 +28,16 @@ enum custom_layers {
   _RAISE,
   _FUNC,
   _GAMING,
+  _GAMING_LOWER,
+  _GAMING_RAISE
 };
 
 const uint16_t PROGMEM del_p_combo[] = {KC_DEL, KC_P, COMBO_END};
+const uint16_t PROGMEM jk_esc_combo[] = {KC_J, KC_K, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [GAME]    = COMBO(del_p_combo, TO(_GAMING)),
+  [JK_ESC]    = COMBO(jk_esc_combo, KC_ESC),
 };
 
 // For _QWERTY layer
@@ -44,6 +51,11 @@ combo_t key_combos[COMBO_COUNT] = {
 
 // For _RAISE layer
 #define CTL_ESC  LCTL_T(KC_ESC)
+
+// For _GAMING layer
+#define MO_LOW MO(_GAMING_LOWER)
+#define GRSE_BSP LT(_GAMING_RAISE, KC_BSPC)
+#define TO_DEF TO(_QWERTY)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
@@ -60,16 +72,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
+       KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,  KC_GRV, KC_TILD, KC_PIPE, KC_LBRC, KC_LCBR,                      KC_RCBR, KC_RBRC, KC_DQUO, KC_QUOT, KC_BSLS, _______,
+      _______,  KC_GRV, KC_TILD, KC_PIPE, KC_LCBR, KC_LBRC,                      KC_RBRC, KC_RCBR, KC_DQUO, KC_QUOT, KC_BSLS, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_TRNS, KC_TRNS,   LOWER,    KC_TRNS, KC_TRNS, KC_TRNS
+                                          KC_TRNS,   LOWER, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
                                       //`--------------------------'  `--------------------------'
     ),
-
 
   [_RAISE] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -79,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_PSCR, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CTL_ESC, KC_TRNS, XXXXXXX,    RAISE  , KC_TRNS, KC_TRNS
+                                          CTL_ESC, KC_TRNS, KC_TRNS,    KC_TRNS,   RAISE, KC_TRNS
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -99,11 +110,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     OSM_LALT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_UNDS,
+      KC_LALT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_UNDS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     OSM_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSL_FUN,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  TO_DEF,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                         OSM_LCTL, LOW_TAB,  KC_SPC,    KC_RSFT, RSE_BSP, GUI_ENT
+                                          KC_LCTL,  MO_LOW,  KC_SPC,    KC_RSFT,GRSE_BSP, GUI_ENT
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_GAMING_LOWER] = LAYOUT(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______,  KC_GRV, KC_TILD, KC_PIPE, KC_LBRC, KC_LCBR,                      KC_RCBR, KC_RBRC, KC_DQUO, KC_QUOT, KC_BSLS, _______,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_TRNS,  GLOWER, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
+                                      //`--------------------------'  `--------------------------'
+    ),
+
+  [_GAMING_RAISE] = LAYOUT(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      _______, XXXXXXX, XXXXXXX,   KC_LT,   KC_GT, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, XXXXXXX, KC_PLUS, KC_MINS,  KC_EQL, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX, _______,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_PSCR, _______,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          CTL_ESC, KC_TRNS, KC_TRNS,    KC_TRNS,  GRAISE, KC_TRNS
                                       //`--------------------------'  `--------------------------'
   ),
 };
