@@ -12,9 +12,8 @@ This is the C configuration file for the keymap
 
 /* Select hand configuration */
 
-#define MASTER_LEFT
-// #define MASTER_RIGHT
-// #define EE_HANDS
+//#define MASTER_LEFT
+#define MASTER_RIGHT
 
 //#define SSD1306OLED
 
@@ -37,11 +36,6 @@ This is the C configuration file for the keymap
 // enabled, the dual-role key will perform its hold action instead.
 #define HOLD_ON_OTHER_KEY_PRESS
 
-// markstos: not sure if these are correct
-// They are intended to beep and flash during flashing
-#define QMK_LED     D5
-#define QMK_SPEAKER C6
-
 // When enabled, typing a mod-tap plus second within term will register as the mod-combo
 // Ref: https://beta.docs.qmk.fm/using-qmk/software-features/tap_hold#permissive-hold
 #define PERMISSIVE_HOLD
@@ -56,3 +50,21 @@ This is the C configuration file for the keymap
 // I want a relatively low timeout, so if I accidentally type "Shift", I can pause just briefly and move on.
 #define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
+
+#define RGBLIGHT_SLEEP
+#ifdef RGBLIGHT_ENABLE
+    #define RGBLIGHT_EFFECT_BREATHING
+    #define RGBLIGHT_EFFECT_RAINBOW_MOOD
+    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+    #define RGBLIGHT_EFFECT_SNAKE
+    #define RGBLIGHT_EFFECT_KNIGHT
+    #define RGBLIGHT_EFFECT_CHRISTMAS
+    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+    #define RGBLIGHT_EFFECT_RGB_TEST
+    #define RGBLIGHT_EFFECT_ALTERNATING
+    #define RGBLIGHT_EFFECT_TWINKLE
+    #define RGBLIGHT_LIMIT_VAL 120
+    #define RGBLIGHT_HUE_STEP 10
+    #define RGBLIGHT_SAT_STEP 17
+    #define RGBLIGHT_VAL_STEP 17
+#endif

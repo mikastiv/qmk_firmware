@@ -8,8 +8,7 @@ enum custom_keycodes {
   RAISE,
   FUNC,
   GAMING,
-  GLOWER,
-  GRAISE
+  GLOWER
 };
 
 enum combos {
@@ -28,8 +27,7 @@ enum custom_layers {
   _RAISE,
   _FUNC,
   _GAMING,
-  _GAMING_LOWER,
-  _GAMING_RAISE
+  _GAMING_LOWER
 };
 
 const uint16_t PROGMEM del_p_combo[] = {KC_DEL, KC_P, COMBO_END};
@@ -49,12 +47,8 @@ combo_t key_combos[COMBO_COUNT] = {
 #define LOW_TAB  LT(_LOWER, KC_TAB)
 #define RSE_BSP  LT(_RAISE, KC_BSPC)
 
-// For _RAISE layer
-#define CTL_ESC  LCTL_T(KC_ESC)
-
 // For _GAMING layer
 #define MO_LOW MO(_GAMING_LOWER)
-#define GRSE_BSP LT(_GAMING_RAISE, KC_BSPC)
 #define TO_DEF TO(_QWERTY)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -90,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX,   KC_LT,   KC_GT, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_PSCR, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CTL_ESC,  KC_TAB, KC_TRNS,    KC_TRNS,   RAISE, KC_TRNS
+                                           KC_ESC,  KC_TAB, KC_TRNS,    KC_TRNS,   RAISE, KC_TRNS
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -114,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  TO_DEF,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LCTL,  MO_LOW,  KC_SPC,    KC_RSFT,GRSE_BSP, GUI_ENT
+                                          KC_LCTL,  MO_LOW,  KC_SPC,    KC_RSFT, KC_BSPC, GUI_ENT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -128,28 +122,59 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_TRNS,  GLOWER, KC_TRNS,    KC_TRNS, KC_BSPC, KC_TRNS
                                       //`--------------------------'  `--------------------------'
-    ),
-
-  [_GAMING_RAISE] = LAYOUT(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, KC_PLUS, KC_MINS,  KC_EQL, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX,   KC_LT,   KC_GT, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_PSCR, _______,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CTL_ESC, _______, KC_TRNS,    KC_TRNS,  GRAISE, KC_TRNS
-                                      //`--------------------------'  `--------------------------'
-  ),
+    )
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-      case LT(_RAISE, KC_BSPC):
+      case RSE_BSP:
             return TAPPING_TERM_THUMB;
-      case LT(_LOWER, KC_TAB):
+      case LOW_TAB:
             return TAPPING_TERM_THUMB;
       default:
             return TAPPING_TERM;
     }
 }
+
+#ifdef OLED_ENABLE
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    // if (is_keyboard_master()) {
+    //     return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
+    // }
+
+    return OLED_ROTATION_180;
+}
+
+bool oled_task_user(void) {
+    if (!is_keyboard_master()) return true;
+
+    // Host Keyboard Layer Status
+    oled_write_P(PSTR("Layer: "), false);
+
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            oled_write_ln_P(PSTR("Default"), false);
+            break;
+        case _LOWER:
+            oled_write_ln_P(PSTR("Lower"), false);
+            break;
+        case _RAISE:
+            oled_write_ln_P(PSTR("Raise"), false);
+            break;
+        case _FUNC:
+            oled_write_ln_P(PSTR("Function"), false);
+            break;
+        case _GAMING:
+            oled_write_ln_P(PSTR("Gaming"), false);
+            break;
+        case _GAMING_LOWER:
+            oled_write_ln_P(PSTR("Gaming Lower"), false);
+            break;
+        default:
+            oled_write_ln_P(PSTR("Undef"), false);
+            break;
+    }
+
+    return false;
+}
+#endif
