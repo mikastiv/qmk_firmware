@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,  KC_GRV, KC_TILD, KC_PIPE, KC_LCBR, KC_LBRC,                      KC_RBRC, KC_RCBR, KC_DQUO, KC_QUOT, KC_BSLS, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_TRNS,   LOWER, KC_TRNS,    KC_TRNS, KC_BSPC, KC_TRNS
+                                          _______,   LOWER, _______,    _______, KC_BSPC, _______
                                       //`--------------------------'  `--------------------------'
     ),
 
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX,   KC_LT,   KC_GT, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_PSCR, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ESC,  KC_TAB, KC_TRNS,    KC_TRNS,   RAISE, KC_TRNS
+                                           KC_ESC,  KC_TAB, _______,    _______,   RAISE, _______
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,  KC_GRV, KC_TILD, KC_PIPE, KC_LBRC, KC_LCBR,                      KC_RCBR, KC_RBRC, KC_DQUO, KC_QUOT, KC_BSLS, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_TRNS,  GLOWER, KC_TRNS,    KC_TRNS, KC_BSPC, KC_TRNS
+                                          _______,  GLOWER, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
     )
 };
@@ -156,6 +156,7 @@ static void render_logo(void) {
 
 static void render_layer_state(void) {
     // Host Keyboard Layer Status
+    oled_write_ln_P(PSTR(""), false);
     oled_write_P(PSTR("Layer: "), false);
 
     switch (get_highest_layer(layer_state)) {
@@ -169,7 +170,7 @@ static void render_layer_state(void) {
             oled_write_ln_P(PSTR("Raise"), false);
             break;
         case _FUNC:
-            oled_write_ln_P(PSTR("Func"), false);
+            oled_write_ln_P(PSTR("Function"), false);
             break;
         case _GAMING:
             oled_write_ln_P(PSTR("Gaming"), false);
