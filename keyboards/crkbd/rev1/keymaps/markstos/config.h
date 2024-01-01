@@ -51,7 +51,8 @@ This is the C configuration file for the keymap
 #define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
 
-#define RGBLIGHT_SLEEP
+// sleep not working for split kb
+// #define RGBLIGHT_SLEEP
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
     #define RGBLIGHT_EFFECT_RAINBOW_MOOD
