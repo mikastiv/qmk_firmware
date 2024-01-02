@@ -17,12 +17,7 @@ This is the C configuration file for the keymap
 
 //#define SSD1306OLED
 
-
-// By default, when holding a dual-function key shortly after tapping it, the
-// tapped key will begin repeating. This is handy for fast typists when typing
-// words with double letters, such as "happy". If you turn this setting ON, it
-// will be counted as a held modifier instead.
-//#define TAPPING_FORCE_HOLD
+#define QUICK_TAP_TERM 0
 
 // Customized by markstos
 #define TAPPING_TERM 200

@@ -156,7 +156,8 @@ static void render_logo(void) {
 
 static void render_layer_state(void) {
     // Host Keyboard Layer Status
-    oled_write_P(PSTR("\nLayer: "), false);
+    oled_write_ln_P(PSTR(""), false);
+    oled_write_P(PSTR("Layer: "), false);
 
     const char *msg;
     switch (get_highest_layer(layer_state)) {
@@ -183,7 +184,7 @@ static void render_layer_state(void) {
             break;
     }
 
-    oled_write_P(msg, false);
+    oled_write_ln_P(msg, false);
 }
 
 bool oled_task_user(void) {
