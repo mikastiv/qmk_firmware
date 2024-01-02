@@ -198,6 +198,7 @@ bool oled_task_user(void) {
 }
 #endif
 
+#ifdef RGBLIGHT_SLEEP
 static uint32_t key_timer;
 static bool is_rgb_timeout = false;
 
@@ -235,3 +236,4 @@ void post_encoder_update_user(uint8_t index, bool clockwise) {
     refresh_rgb();
 #endif
 }
+#endif
