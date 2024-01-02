@@ -199,7 +199,7 @@ bool oled_task_user(void) {
 #endif
 
 static uint32_t key_timer;
-bool is_rgb_timeout = false;
+static bool is_rgb_timeout = false;
 
 static void refresh_rgb(void) {
     key_timer = timer_read32();
