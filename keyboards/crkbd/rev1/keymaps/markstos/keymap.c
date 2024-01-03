@@ -45,6 +45,7 @@ combo_t key_combos[COMBO_COUNT] = {
 #define GUI_ENT  GUI_T(KC_ENT)
 #define LOW_TAB  LT(_LOWER, KC_TAB)
 #define RSE_BSP  LT(_RAISE, KC_BSPC)
+// #define ALT_UND  LALT_T(KC_UNDS)
 
 // For _GAMING layer
 #define MO_LOW MO(_GAMING_LOWER)
@@ -127,7 +128,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
       case RSE_BSP:
-            return TAPPING_TERM_THUMB;
       case LOW_TAB:
             return TAPPING_TERM_THUMB;
       default:
