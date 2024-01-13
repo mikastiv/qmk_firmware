@@ -142,17 +142,25 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-#define CUSTOM_CYAN        150, 255, RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#define CUSTOM_ORANGE       15, 255, RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#define CUSTOM_CYAN        150, 255, rgb_matrix_get_val()
+#define CUSTOM_ORANGE       15, 255, rgb_matrix_get_val()
 
-void keyboard_post_init_user(void) {
+static void init_rgb_matrix(void) {
     rgb_matrix_enable_noeeprom();
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
     rgb_matrix_sethsv_noeeprom(CUSTOM_CYAN);
 }
 
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    switch(get_highest_layer(layer_state|default_layer_state)) {
+void keyboard_post_init_user(void) {
+    init_rgb_matrix();
+}
+
+void suspend_wakeup_init_user(void) {
+    init_rgb_matrix();
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch(get_highest_layer(state)) {
         case GAMING:
         case GAMING_LOWER:
             rgb_matrix_sethsv_noeeprom(CUSTOM_ORANGE);
@@ -161,7 +169,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             rgb_matrix_sethsv_noeeprom(CUSTOM_CYAN);
             break;
     }
-    return false;
+    return state;
 }
 
 #ifdef OLED_ENABLE
