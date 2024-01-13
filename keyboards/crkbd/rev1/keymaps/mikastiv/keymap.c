@@ -142,8 +142,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-#define CUSTOM_CYAN        150, 255, 200
-#define CUSTOM_RED           0, 255, 200
+#define CUSTOM_CYAN        150, 255, RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#define CUSTOM_ORANGE       15, 255, RGB_MATRIX_MAXIMUM_BRIGHTNESS
 
 void keyboard_post_init_user(void) {
     rgb_matrix_enable_noeeprom();
@@ -155,7 +155,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     switch(get_highest_layer(layer_state|default_layer_state)) {
         case GAMING:
         case GAMING_LOWER:
-            rgb_matrix_sethsv_noeeprom(CUSTOM_RED);
+            rgb_matrix_sethsv_noeeprom(CUSTOM_ORANGE);
             break;
         default:
             rgb_matrix_sethsv_noeeprom(CUSTOM_CYAN);
