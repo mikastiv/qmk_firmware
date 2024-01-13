@@ -13,11 +13,6 @@ enum combos {
   JK_ESC
 };
 
-
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers.
 enum custom_layers {
   DEFAULT,
   LOWER,
@@ -142,6 +137,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+#ifdef RGB_MATRIX_ENABLE
 #define CUSTOM_CYAN        150, 255, rgb_matrix_get_val()
 #define CUSTOM_ORANGE       15, 255, rgb_matrix_get_val()
 
@@ -171,6 +167,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
     return state;
 }
+#endif
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
