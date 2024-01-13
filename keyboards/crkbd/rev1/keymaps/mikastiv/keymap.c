@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 
 // enum custom_keycodes {
-//   QWERTY = SAFE_RANGE,
+//   DEFAULT = SAFE_RANGE,
 //   LOWER,
 //   RAISE,
 //   FUNC,
@@ -19,7 +19,7 @@ enum combos {
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 enum custom_layers {
-  QWERTY,
+  DEFAULT,
   LOWER,
   RAISE,
   FUNC,
@@ -35,7 +35,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [JK_ESC]    = COMBO(jk_esc_combo, KC_ESC),
 };
 
-// For QWERTY layer
+// For DEFAULT layer
 #define OSM_LCTL OSM(MOD_LCTL)
 #define OSM_LALT OSM(MOD_LALT)
 #define OSM_LSFT OSM(MOD_LSFT)
@@ -46,10 +46,10 @@ combo_t key_combos[COMBO_COUNT] = {
 
 // For _GAMING layer
 #define MO_LOW MO(GAMING_LOWER)
-#define TO_DEF TO(QWERTY)
+#define TO_DEF TO(DEFAULT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [QWERTY] = LAYOUT(
+  [DEFAULT] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -142,6 +142,28 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+#define CUSTOM_CYAN        150, 255, 200
+#define CUSTOM_RED           0, 255, 200
+
+void keyboard_post_init_user(void) {
+    rgb_matrix_enable_noeeprom();
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+    rgb_matrix_sethsv_noeeprom(CUSTOM_CYAN);
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    switch(get_highest_layer(layer_state|default_layer_state)) {
+        case GAMING:
+        case GAMING_LOWER:
+            rgb_matrix_sethsv_noeeprom(CUSTOM_RED);
+            break;
+        default:
+            rgb_matrix_sethsv_noeeprom(CUSTOM_CYAN);
+            break;
+    }
+    return false;
+}
+
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
@@ -168,7 +190,7 @@ static void render_layer_state(void) {
 
     const char *msg;
     switch (get_highest_layer(layer_state)) {
-        case QWERTY:
+        case DEFAULT:
             msg = PSTR("Default");
             break;
         case LOWER:
