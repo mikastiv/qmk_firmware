@@ -7,7 +7,9 @@
 //#define MASTER_LEFT
 #define MASTER_RIGHT
 
-#define QUICK_TAP_TERM 0
+// timing for auto repeat keys
+#define QUICK_TAP_TERM 100
+#define QUICK_TAP_TERM_PER_KEY
 
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
@@ -22,8 +24,8 @@
 // They would have be held together intentionally to trigger this.
 #define COMBO_TERM 40
 
-// #define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
-// #define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
+#define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
 
 // #define RGBLIGHT_SLEEP
 // #define RGBLIGHT_TIMEOUT 60000
