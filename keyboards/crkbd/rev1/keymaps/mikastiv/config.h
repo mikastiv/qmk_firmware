@@ -1,14 +1,12 @@
 #pragma once
 
-//#define USE_MATRIX_I2C
-
 /* Select hand configuration */
 
 //#define MASTER_LEFT
 #define MASTER_RIGHT
 
 // timing for auto repeat keys
-#define QUICK_TAP_TERM 100
+#define QUICK_TAP_TERM 200
 #define QUICK_TAP_TERM_PER_KEY
 
 #define TAPPING_TERM 200
@@ -26,7 +24,6 @@
 
 #define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
-
 
 #ifdef RGB_MATRIX_ENABLE
 // #   define SPLIT_LAYER_STATE_ENABLE
