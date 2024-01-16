@@ -25,9 +25,9 @@ enum custom_layers {
 const uint16_t PROGMEM gaming_combo[] = {KC_Y, KC_DEL, COMBO_END};
 const uint16_t PROGMEM jk_esc_combo[] = {KC_J, KC_K, COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
-  [GAME]    = COMBO(gaming_combo, TO(GAMING)),
-  [JK_ESC]    = COMBO(jk_esc_combo, KC_ESC),
+combo_t key_combos[] = {
+  [GAME] = COMBO(gaming_combo, TO(GAMING)),
+  [JK_ESC] = COMBO(jk_esc_combo, KC_ESC),
 };
 
 // For DEFAULT layer
@@ -131,7 +131,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RSE_BSP:
         case LOW_TAB:
-            return 0;
+            return QUICK_TAP_TERM_THUMB;
         default:
             return QUICK_TAP_TERM;
     }
@@ -172,7 +172,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
-        return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
+        return OLED_ROTATION_180;
     }
 
     return rotation;
