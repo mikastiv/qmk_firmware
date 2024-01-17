@@ -48,7 +48,6 @@
 #    include "sleep_led.h"
 #endif
 #include "suspend.h"
-#include "matrix.h"
 #include "wait.h"
 
 #include "usb_descriptor.h"
@@ -856,10 +855,8 @@ void protocol_pre_task(void) {
         dprintln("suspending keyboard");
         while (USB_DeviceState == DEVICE_STATE_Suspended) {
             suspend_power_down();
-            matrix_power_up();
-            matrix_scan();
-            matrix_power_down();
-            if (USB_Device_RemoteWakeupEnabled && suspend_wakeup_condition()) {
+            const bool wakeup = suspend_wakeup_condition();
+            if (USB_Device_RemoteWakeupEnabled && wakeup) {
                 USB_Device_SendRemoteWakeup();
                 clear_keyboard();
 
