@@ -137,21 +137,24 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-#ifdef RGB_MATRIX_ENABLE
 #define CUSTOM_CYAN        150, 255, rgb_matrix_get_val()
 #define CUSTOM_ORANGE       15, 255, rgb_matrix_get_val()
 
 static void init_rgb_matrix(void) {
+#ifdef RGB_MATRIX_ENABLE
     rgb_matrix_enable_noeeprom();
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
     rgb_matrix_sethsv_noeeprom(CUSTOM_CYAN);
-}
-
-void keyboard_post_init_user(void) {
-    init_rgb_matrix();
+#endif
 }
 
 void suspend_wakeup_init_user(void) {
+    layer_state_set(DEFAULT);
+    init_rgb_matrix();
+}
+
+#ifdef RGB_MATRIX_ENABLE
+void keyboard_post_init_user(void) {
     init_rgb_matrix();
 }
 
