@@ -48,8 +48,8 @@ combo_t key_combos[] = {
 #define N_SFT    LSFT_T(KC_N)
 #define J_SFT    LSFT_T(KC_J)
 
-#define RSE_TAB LT(RAISE, KC_TAB)
-#define LOW MO(LOWER)
+#define LOW_TAB LT(LOWER, KC_TAB)
+#define RSE MO(RAISE)
 #define TO_DEF_Q TO(QWERTY_DEFAULT)
 #define TO_DEF_N TO(NORMAN_DEFAULT)
 
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_QUOT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSL_FUN,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ESC, RSE_TAB,  KC_SPC,    KC_BSPC,     LOW,  KC_ENT
+                                           KC_ESC, LOW_TAB,  KC_SPC,    KC_BSPC,     RSE,  KC_ENT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_QUOT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_P,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSL_FUN,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ESC, RSE_TAB,  KC_SPC,    KC_BSPC,     LOW,  KC_ENT
+                                           KC_ESC, LOW_TAB,  KC_SPC,    KC_BSPC,     RSE,  KC_ENT
                                       //`--------------------------'  `--------------------------'
   ),
 
