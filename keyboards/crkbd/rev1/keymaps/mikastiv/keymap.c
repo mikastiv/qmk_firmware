@@ -14,8 +14,8 @@ enum combos {
 };
 
 enum custom_layers {
-  QWERTY_DEFAULT,
   NORMAN_DEFAULT,
+  QWERTY_DEFAULT,
   LOWER,
   RAISE,
   FUNC,
@@ -68,11 +68,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [NORMAN_DEFAULT] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_D,    KC_F,    KC_K,                         KC_J,    KC_U,    KC_R,    KC_L, KC_SCLN,  KC_DEL,
+       KC_TAB,    KC_Q,    KC_W,    KC_D,    KC_F,    KC_K,                         KC_Y,    KC_U,    KC_R,    KC_L,    KC_P,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_DQUO,    KC_A,   S_GUI,   E_ALT,   T_CTL,    KC_G,                         KC_Y,   N_CTL,   I_ALT,   O_GUI,    KC_H, KC_UNDS,
+      KC_DQUO,    KC_A,   S_GUI,   E_ALT,   T_CTL,    KC_G,                         KC_H,   N_CTL,   I_ALT,   O_GUI, KC_SCLN, KC_UNDS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_QUOT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_P,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSL_FUN,
+      KC_QUOT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_J,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSL_FUN,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            KC_ESC, LOW_TAB,  KC_SPC,    KC_RSFT, RSE_BSP,  KC_ENT
                                       //`--------------------------'  `--------------------------'
@@ -229,7 +229,7 @@ static void init_rgb_matrix(void) {
 }
 
 void suspend_wakeup_init_user(void) {
-    layer_state_set(QWERTY_DEFAULT);
+    layer_state_set(NORMAN_DEFAULT);
     init_rgb_matrix();
 }
 
