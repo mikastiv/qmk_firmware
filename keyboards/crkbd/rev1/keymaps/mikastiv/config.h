@@ -7,18 +7,19 @@
 
 // timing for auto repeat keys
 #define QUICK_TAP_TERM_PER_KEY
-#define QUICK_TAP_TERM 200
-#define QUICK_TAP_TERM_THUMB 0
+#define QUICK_TAP_TERM_MODS 0
 
 // this determines what is a tap and what is a hold
 #define TAPPING_TERM_PER_KEY
-#define TAPPING_TERM 200
+#define TAPPING_TERM 175
 #define TAPPING_TERM_THUMB 125
 
 // this mode selects the hold action in more cases
-#define HOLD_ON_OTHER_KEY_PRESS
+// #define HOLD_ON_OTHER_KEY_PRESS
+// #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 // immediately select the hold action when another key is tapped
 #define PERMISSIVE_HOLD
+#define PERMISSIVE_HOLD_PER_KEY
 
 // combo timeout
 #define COMBO_TERM 40
