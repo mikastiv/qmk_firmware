@@ -23,12 +23,10 @@ enum custom_layers {
   GAMING_LOWER
 };
 
-const uint16_t PROGMEM gaming_combo[] = {KC_Y, KC_DEL, COMBO_END};
-const uint16_t PROGMEM jk_esc_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM gaming_combo[] = {KC_J, KC_DEL, COMBO_END};
 
 combo_t key_combos[] = {
   [GAME] = COMBO(gaming_combo, TO(GAMING)),
-  [JK_ESC] = COMBO(jk_esc_combo, KC_ESC),
 };
 
 #define OSL_FUN  OSL(FUNC)
