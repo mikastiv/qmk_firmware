@@ -36,20 +36,14 @@ combo_t key_combos[] = {
 #define O_GUI   LGUI_T(KC_O)
 #define S_GUI   LGUI_T(KC_S)
 #define L_GUI   LGUI_T(KC_L)
-#define N2_GUI  LGUI_T(KC_2)
-#define N9_GUI  LGUI_T(KC_9)
 #define D_ALT   LALT_T(KC_D)
 #define E_ALT   LALT_T(KC_E)
 #define I_ALT   LALT_T(KC_I)
 #define K_ALT   LALT_T(KC_K)
-#define N3_ALT  LALT_T(KC_3)
-#define N8_ALT  LALT_T(KC_8)
 #define F_CTL   LCTL_T(KC_F)
 #define T_CTL   LCTL_T(KC_T)
 #define N_CTL   LCTL_T(KC_N)
 #define J_CTL   LCTL_T(KC_J)
-#define N4_CTL  LCTL_T(KC_4)
-#define N7_CTL  LCTL_T(KC_7)
 
 #define LOW_TAB LT(LOWER, KC_TAB)
 #define RSE_BSP LT(RAISE, KC_BSPC)
@@ -74,11 +68,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [NORMAN_DEFAULT] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_D,    KC_F,    KC_K,                         KC_Y,    KC_U,    KC_R,    KC_L,    KC_P,  KC_DEL,
+       KC_TAB,    KC_Q,    KC_W,    KC_D,    KC_F,    KC_K,                         KC_J,    KC_U,    KC_R,    KC_L, KC_SCLN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_UNDS,    KC_A,   S_GUI,   E_ALT,   T_CTL,    KC_G,                         KC_H,   N_CTL,   I_ALT,   O_GUI, KC_SCLN, KC_DQUO,
+      KC_UNDS,    KC_A,   S_GUI,   E_ALT,   T_CTL,    KC_G,                         KC_Y,   N_CTL,   I_ALT,   O_GUI,    KC_H, KC_DQUO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      OSL_FUN,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_J,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_QUOT,
+      OSL_FUN,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_P,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            KC_ESC, LOW_TAB,  KC_SPC,    KC_RSFT, RSE_BSP,  KC_ENT
                                       //`--------------------------'  `--------------------------'
@@ -86,9 +80,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LOWER] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_GRV, KC_EXLM, KC_PLUS, KC_MINS,  KC_EQL,   KC_AT,                      KC_PIPE, KC_LPRN, KC_RPRN, KC_ASTR, KC_AMPR, XXXXXXX,
+       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_DLR,    KC_1,  N2_GUI,  N3_ALT,  N4_CTL,    KC_5,                         KC_6,  N7_CTL,  N8_ALT,  N9_GUI,    KC_0, KC_HASH,
+       KC_DLR, KC_EXLM, KC_PLUS, KC_MINS,  KC_EQL,   KC_AT,                      KC_PIPE, KC_LPRN, KC_RPRN, KC_ASTR, KC_AMPR, KC_HASH,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CIRC, KC_PERC,   KC_LT,   KC_GT, KC_LCBR, KC_LBRC,                      KC_RBRC, KC_RCBR, KC_COMM,  KC_DOT, KC_BSLS, KC_TILD,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -150,20 +144,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case O_GUI:
         case S_GUI:
         case L_GUI:
-        case N2_GUI:
-        case N9_GUI:
         case D_ALT:
         case E_ALT:
         case I_ALT:
         case K_ALT:
-        case N3_ALT:
-        case N8_ALT:
         case F_CTL:
         case T_CTL:
         case N_CTL:
         case J_CTL:
-        case N4_CTL:
-        case N7_CTL:
             return TAPPING_TERM + 50;
         case RSE_BSP:
         case LOW_TAB:
@@ -178,20 +166,14 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case O_GUI:
         case S_GUI:
         case L_GUI:
-        case N2_GUI:
-        case N9_GUI:
         case D_ALT:
         case E_ALT:
         case I_ALT:
         case K_ALT:
-        case N3_ALT:
-        case N8_ALT:
         case F_CTL:
         case T_CTL:
         case N_CTL:
         case J_CTL:
-        case N4_CTL:
-        case N7_CTL:
         case RSE_BSP:
         case LOW_TAB:
             return QUICK_TAP_TERM_MODS;
