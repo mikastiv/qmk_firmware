@@ -160,9 +160,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // case N_CTL:
         // case J_CTL:
         //     return TAPPING_TERM + 50;
-        case RSE:
-        case LOW:
-            return TAPPING_TERM_THUMB;
+        // case RSE:
+        // case LOW:
+        //     return TAPPING_TERM_THUMB;
         default:
             return TAPPING_TERM;
     }
@@ -184,8 +184,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case T_CTL:
         case N_CTL:
         case J_CTL:
-        case RSE:
-        case LOW:
+        // case RSE:
+        // case LOW:
             return QUICK_TAP_TERM_MODS;
         default:
             return QUICK_TAP_TERM;
