@@ -49,46 +49,46 @@ combo_t key_combos[] = {
 #define N_CTL   LCTL_T(KC_N)
 #define J_CTL   LCTL_T(KC_J)
 
-#define LOW_TAB LT(LOWER, KC_TAB)
-#define RSE_BSP LT(RAISE, KC_BSPC)
+#define LOW MO(LOWER)
+#define RSE MO(RAISE)
 #define TO_QWERT TO(QWERTY_DEFAULT)
 #define TO_NORMA TO(NORMAN_DEFAULT)
 
 // For GAMING layer
-#define MO_LOW MO(GAMING_LOWER)
+#define G_LOW MO(GAMING_LOWER)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY_DEFAULT] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_DEL,
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_UNDS,   A_GUI,   S_SFT,   D_ALT,   F_CTL,    KC_G,                         KC_H,   J_CTL,   K_ALT,   L_SFT,  SC_GUI, KC_DQUO,
+      KC_UNDS,   A_GUI,   S_SFT,   D_ALT,   F_CTL,    KC_G,                         KC_H,   J_CTL,   K_ALT,   L_SFT,  SC_GUI, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      OSL_FUN,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_QUOT,
+      OSL_FUN,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ESC, LOW_TAB, KC_RSFT,     KC_SPC, RSE_BSP,  KC_ENT
+                                          KC_BSPC,     LOW, KC_RSFT,     KC_SPC,     RSE,  KC_ENT
                                       //`--------------------------'  `--------------------------'
   ),
 
   [NORMAN_DEFAULT] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,    KC_Q,    KC_W,    KC_D,    KC_F,    KC_K,                         KC_J,    KC_U,    KC_R,    KC_L, KC_SCLN,  KC_DEL,
+       KC_TAB,    KC_Q,    KC_W,    KC_D,    KC_F,    KC_K,                         KC_J,    KC_U,    KC_R,    KC_L, KC_SCLN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_UNDS,   A_GUI,   S_SFT,   E_ALT,   T_CTL,    KC_G,                         KC_Y,   N_CTL,   I_ALT,   O_SFT,   H_GUI, KC_DQUO,
+      KC_UNDS,   A_GUI,   S_SFT,   E_ALT,   T_CTL,    KC_G,                         KC_Y,   N_CTL,   I_ALT,   O_SFT,   H_GUI, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      OSL_FUN,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_P,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_QUOT,
+      OSL_FUN,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_P,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ESC, LOW_TAB, KC_RSFT,     KC_SPC, RSE_BSP,  KC_ENT
+                                          KC_BSPC,     LOW, KC_RSFT,     KC_SPC,     RSE,  KC_ENT
                                       //`--------------------------'  `--------------------------'
   ),
 
   [LOWER] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
+       KC_GRV, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_DLR, KC_EXLM, KC_PLUS, KC_MINS,  KC_EQL,   KC_AT,                      KC_PIPE, KC_LPRN, KC_RPRN, KC_ASTR, KC_AMPR, KC_HASH,
+      KC_TILD,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_PLUS,  KC_EQL, KC_MINS, KC_LCBR, KC_RCBR, KC_PIPE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CIRC, KC_PERC,   KC_LT,   KC_GT, KC_LCBR, KC_LBRC,                      KC_RBRC, KC_RCBR, KC_COMM,  KC_DOT, KC_BSLS, KC_TILD,
+      XXXXXXX,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      KC_BSLS,   KC_LT,   KC_GT, KC_LBRC, KC_RBRC, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, XXXXXXX, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -108,11 +108,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [FUNC] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,TO_QWERT,
+      XXXXXXX,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,   KC_F5,   KC_F6,   KC_F7,   KC_F8, XXXXXXX,                      RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, RGB_TOG,TO_NORMA,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,   KC_F9,  KC_F10,  KC_F11,  KC_F12, XXXXXXX,                      RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD, QK_BOOT, XXXXXXX,
+      XXXXXXX,   KC_F9,  KC_F10,  KC_F11,  KC_F12, XXXXXXX,                      RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD, QK_BOOT,TO_QWERT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
@@ -120,13 +120,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [GAMING] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,TO_QWERT,
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LALT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,TO_NORMA,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_DEL,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,TO_QWERT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LCTL,  MO_LOW,  KC_SPC,    KC_LGUI, KC_BSPC,  KC_ENT
+                                          KC_LCTL,   G_LOW,  KC_SPC,    KC_LGUI, KC_BSPC,  KC_ENT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -145,23 +145,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case A_GUI:
-        case H_GUI:
-        case SC_GUI:
-        case S_SFT:
-        case L_SFT:
-        case O_SFT:
-        case D_ALT:
-        case E_ALT:
-        case I_ALT:
-        case K_ALT:
-        case F_CTL:
-        case T_CTL:
-        case N_CTL:
-        case J_CTL:
-            return TAPPING_TERM + 50;
-        case RSE_BSP:
-        case LOW_TAB:
+        // case A_GUI:
+        // case H_GUI:
+        // case SC_GUI:
+        // case S_SFT:
+        // case L_SFT:
+        // case O_SFT:
+        // case D_ALT:
+        // case E_ALT:
+        // case I_ALT:
+        // case K_ALT:
+        // case F_CTL:
+        // case T_CTL:
+        // case N_CTL:
+        // case J_CTL:
+        //     return TAPPING_TERM + 50;
+        case RSE:
+        case LOW:
             return TAPPING_TERM_THUMB;
         default:
             return TAPPING_TERM;
@@ -184,8 +184,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case T_CTL:
         case N_CTL:
         case J_CTL:
-        case RSE_BSP:
-        case LOW_TAB:
+        case RSE:
+        case LOW:
             return QUICK_TAP_TERM_MODS;
         default:
             return QUICK_TAP_TERM;
@@ -194,10 +194,9 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case RSE_BSP:
-        case LOW_TAB:
-            // Immediately select the hold action when another key is pressed.
-            return true;
+        // case RSE_BSP:
+        //     // Immediately select the hold action when another key is pressed.
+        //     return true;
         default:
             // Do not select the hold action when another key is pressed.
             return false;
@@ -206,10 +205,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case RSE_BSP:
-        case LOW_TAB:
-            // Immediately select the hold action when another key is tapped.
-            return true;
+        // case RSE_BSP:
+        //     // Immediately select the hold action when another key is tapped.
+        //     return true;
         default:
             // Do not select the hold action when another key is tapped.
             return false;
