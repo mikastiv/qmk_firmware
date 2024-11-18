@@ -24,8 +24,8 @@ enum custom_layers {
   GAMING_LOWER
 };
 
-const uint16_t PROGMEM gaming_combo1[] = {KC_J, KC_DEL, COMBO_END};
-const uint16_t PROGMEM gaming_combo2[] = {KC_Y, KC_DEL, COMBO_END};
+const uint16_t PROGMEM gaming_combo1[] = {KC_J, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM gaming_combo2[] = {KC_Y, KC_BSPC, COMBO_END};
 
 combo_t key_combos[] = {
   [GAME1] = COMBO(gaming_combo1, TO(GAMING)),
