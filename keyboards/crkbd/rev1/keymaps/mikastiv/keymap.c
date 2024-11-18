@@ -1,12 +1,11 @@
 #include QMK_KEYBOARD_H
 
-// enum custom_keycodes {
-//   DEFAULT = SAFE_RANGE,
-//   LOWER,
-//   RAISE,
-//   FUNC,
-//   GLOWER
-// };
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
+
+enum custom_keycodes {
+  ALT_TAB = SAFE_RANGE,
+};
 
 enum combos {
   GAME1,
@@ -34,9 +33,6 @@ combo_t key_combos[] = {
 
 #define OSL_FUN  OSL(FUNC)
 
-#define A_GUI   LGUI_T(KC_A)
-#define H_GUI   LGUI_T(KC_H)
-#define SC_GUI  LGUI_T(KC_SCLN)
 #define S_SFT   LSFT_T(KC_S)
 #define L_SFT   LSFT_T(KC_L)
 #define O_SFT   LSFT_T(KC_O)
@@ -88,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_PLUS,  KC_EQL, KC_LCBR, KC_RCBR, KC_PIPE, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      KC_TILD, KC_MINS, KC_LBRC, KC_RBRC, KC_BSLS, XXXXXXX,
+      ALT_TAB,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      KC_TILD, KC_MINS, KC_LBRC, KC_RBRC, KC_BSLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, XXXXXXX, _______,    _______, XXXXXXX, _______
                                       //`--------------------------'  `--------------------------'
@@ -145,21 +141,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // case A_GUI:
-        // case H_GUI:
-        // case SC_GUI:
-        // case S_SFT:
-        // case L_SFT:
-        // case O_SFT:
-        // case D_ALT:
-        // case E_ALT:
-        // case I_ALT:
-        // case K_ALT:
-        // case F_CTL:
-        // case T_CTL:
-        // case N_CTL:
-        // case J_CTL:
-        //     return TAPPING_TERM + 50;
+        case S_SFT:
+        case L_SFT:
+        case O_SFT:
+        case D_ALT:
+        case E_ALT:
+        case I_ALT:
+        case K_ALT:
+        case F_CTL:
+        case T_CTL:
+        case N_CTL:
+        case J_CTL:
+            return TAPPING_TERM + 25;
         // case RSE:
         // case LOW:
         //     return TAPPING_TERM_THUMB;
@@ -170,9 +163,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case A_GUI:
-        case H_GUI:
-        case SC_GUI:
         case S_SFT:
         case L_SFT:
         case O_SFT:
@@ -211,6 +201,33 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
         default:
             // Do not select the hold action when another key is tapped.
             return false;
+    }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case ALT_TAB:
+        if (record->event.pressed) {
+            if (!is_alt_tab_active) {
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+        } else {
+            unregister_code(KC_TAB);
+        }
+        break;
+  }
+  return true;
+}
+
+void matrix_scan_user(void) {
+    if (is_alt_tab_active) {
+        if (timer_elapsed(alt_tab_timer) > 1000) {
+            unregister_code(KC_LALT);
+            is_alt_tab_active = false;
+        }
     }
 }
 
