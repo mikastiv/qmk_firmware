@@ -21,9 +21,9 @@ see https://docs.qmk.fm/#/feature_split_keyboard?id=setting-handedness
 for more options.
 */
 
-// #define EE_HANDS
+#define EE_HANDS
 //#define MASTER_LEFT
-#define MASTER_RIGHT
+// #define MASTER_RIGHT
 
 //#define TAPPING_TERM 170
 #define TAPPING_TERM 300
